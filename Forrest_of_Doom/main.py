@@ -1,5 +1,5 @@
 import argparse
-import game
+from Forrest_of_Doom import game
 from pathlib import Path
 from Forrest_of_Doom import models
 
