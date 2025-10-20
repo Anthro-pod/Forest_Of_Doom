@@ -32,4 +32,4 @@ IF "%TESTFLAG%"=="1" (
 )
 
 REM Run the game
-.venv\Scripts\python.exe -m Forrest_of_Doom.main %*
+.venv\Scripts\python.exe -m forest_of_doom.main %*

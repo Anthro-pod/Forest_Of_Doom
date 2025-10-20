@@ -1,4 +1,4 @@
-from Forrest_of_Doom import game
+from forest_of_doom import game
 
 
 def test_run_game_fast_mode(monkeypatch):
@@ -27,7 +27,7 @@ def test_in_game_save(monkeypatch, tmp_path):
 
 def test_in_game_load(monkeypatch, tmp_path):
     # create a saved player file with known stats
-    from Forrest_of_Doom.models import save_player, Player
+    from forest_of_doom.models import save_player, Player
 
     saved = Player(skill=99, stamina=99, luck=99, backpack={'gold': 1}, potion='fortune')
     path = tmp_path / 'load.json'
@@ -39,7 +39,7 @@ def test_in_game_load(monkeypatch, tmp_path):
 
     # load callback uses the saved file; we pass it directly to run_game
     def load_cb():
-        from Forrest_of_Doom.models import load_player
+        from forest_of_doom.models import load_player
 
         return load_player(path)
 
@@ -47,7 +47,7 @@ def test_in_game_load(monkeypatch, tmp_path):
 
 
 def test_slot_save_and_load(monkeypatch, tmp_path):
-    from Forrest_of_Doom.models import save_player, Player, load_player
+    from forest_of_doom.models import save_player, Player, load_player
 
     base_save = tmp_path / 'save.json'
     # create initial base save
@@ -79,7 +79,7 @@ def test_slot_save_and_load(monkeypatch, tmp_path):
 
 def test_in_game_save_backup(monkeypatch, tmp_path):
     # Ensure that saving when file exists creates a .bak backup
-    from Forrest_of_Doom.models import Player, save_player
+    from forest_of_doom.models import Player, save_player
 
     save_path = tmp_path / 'save.json'
     # initial save

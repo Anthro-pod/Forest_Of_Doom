@@ -1,4 +1,4 @@
-"""Forrest_of_Doom package initializer.
+"""forest_of_doom package initializer.
 
 This file makes the folder importable as a package for tests and tooling.
 """

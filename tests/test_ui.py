@@ -5,7 +5,7 @@ import time
 
 import pytest
 
-from Forrest_of_Doom import ui
+from forest_of_doom import ui
 
 
 def test_get_valid_input(monkeypatch):

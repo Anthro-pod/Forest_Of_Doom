@@ -62,7 +62,7 @@ This does not worry you at all, as you are happy with your own company and enjoy
 to sleep beneath your sheepskin blanket. There's a full moon, and the light sparkles on the blade of
 your broadsword, skewered into the ground by your side. You gaze at it, wondering when you will next
 have to wipe the blood of some vile creature from its sharp edge. These are strange lands, inhabited by
-twisted and loathsome beasts  goblins, trolls, and even dragons.''', fast=fast)
+twisted and loathsome beasts  ã goblins, trolls, and even dragons.''', fast=fast)
     print()
     slow_print('''As the flame of your campfire gently dies, you begin to drift asleep, and images of screaming,
 green-faced trolls flicker through your mind.
@@ -111,7 +111,7 @@ You will be well rewarded..."
 
 Bigleg opens his mouth to start another sentence, but nothing comes out except his last dying breath.
 
-You sit down and ponder Bigleg9s words. Who is Gillibran? Who is Yaztromo?
+You sit down and ponder Bigleg's words. Who is Gillibran? Who is Yaztromo?
 What is all the fuss about the dwarfish hammer?
 
 You reach over to the still body of Bigleg and remove the pouch from the leather belt around his waist.
@@ -119,7 +119,7 @@ Inside, you find 10 Gold Pieces and a map.
 
 Jingling the coins in your hand, you think of the possible rewards which may await you just for
 returning a hammer to a village of dwarfs. You decide to try to find the hammer in Darkwood
-Forest  it's been a few weeks since your last good battle, and, what is more, you are likely to be well
+Forest  ˜ it's been a few weeks since your last good battle, and, what is more, you are likely to be well
 paid for this one.
 
 With your mind made up, you settle down to sleep, having taken back the sheepskin blanket from poor
@@ -131,7 +131,7 @@ pace, eager to meet this man Yaztromo and see what he has to offer.''', fast=fas
 
 
 def yaztromo_intro(fast: bool = False, save_handler=None, load_handler=None) -> str:
-    slow_print('''Your walk to Yaztromo9s takes a little over half a day, and you arrive at his stone tower home dirty
+    slow_print('''Your walk to Yaztromo's takes a little over half a day, and you arrive at his stone tower home dirty
 and hungry. As the tower is set back on the edges of Darkwood, some fifty metres away from the path you have been following, it is difficult to find.
 
 Finally, you walk up to the huge oak door, somewhat relieved to find that it does exist and that
@@ -209,7 +209,7 @@ def run_game(fast: bool = False, seed: int | None = None, initial_player=None, s
     if not display_intro(player, fast=fast, save_handler=_save_handler, load_handler=_load_handler):
         return player  # Exit if player chooses not to enter
     print()
-    get_valid_input('Type "ready" when you wish to generate your strengths and weaknesses: (or type \"save\"/\"load\") ', ['ready'], special_handlers={'save': lambda _: _save_handler(player), 'load': lambda _: _load_handler(player)})
+    get_valid_input('Type "ready" when you wish to generate your strengths and weaknesses: (or type "\"save\"/\"load\"") ', ['ready'], special_handlers={'save': lambda _: _save_handler(player), 'load': lambda _: _load_handler(player)})
     rng = random.Random(seed) if seed is not None else None
     generate_stats(player, rng=rng)
     display_status(player)

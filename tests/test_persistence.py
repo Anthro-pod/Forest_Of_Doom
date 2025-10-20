@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from Forrest_of_Doom.models import Player, save_player, load_player
+from forest_of_doom.models import Player, save_player, load_player
 
 
 def test_save_load_roundtrip(tmp_path: Path):

@@ -90,14 +90,18 @@ if ($Load) { $argList += '--load'; $argList += $Load }
 if ($Save) { $argList += '--save'; $argList += $Save }
 
 Write-Host "Starting game..."
-$mainPy = Join-Path $projectRoot 'Forrest_of_Doom\main.py'
+$mainPy = Join-Path $projectRoot 'forest_of_doom\main.py'
 if (-not (Test-Path $mainPy)) {
     Write-Error "Entrypoint $mainPy not found. Are you in the project root?"
     Pop-Location
     return
 }
 
-# Use splatting to pass arguments correctly
-& $python $mainPy @argList
+if ($argList.Count -eq 0) {
+    # prefer running as module which preserves package imports
+    & $python -m forest_of_doom.main
+} else {
+    & $python -m forest_of_doom.main @argList
+}
 
 Pop-Location

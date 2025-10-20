@@ -36,4 +36,4 @@ if [ "${1-}" = "--tests" ] || [ "${1-}" = "-Tests" ]; then
 fi
 
 # Run the game (module form works well across environments)
-exec "$PY" -m Forrest_of_Doom.main "$@"
+exec "$PY" -m forest_of_doom.main "$@"

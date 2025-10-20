@@ -1,6 +1,6 @@
 import random
 
-from Forrest_of_Doom.models import Player, generate_stats
+from forest_of_doom.models import Player, generate_stats
 
 
 def test_generate_stats_ranges():

@@ -7,4 +7,4 @@ name = "forrest-of-doom"
 version = "0.1.0"
 description = "A small text adventure refactored into modules for testing and maintainability."
 authors = ["Anthro-pod <dev@example.com>"]
-packages = [{include = "Forrest_of_Doom"}]
+packages = [{include = "forest_of_doom"}]

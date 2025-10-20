@@ -5,13 +5,13 @@ Small text-adventure refactored into modules for better testing and maintenance.
 Run the game:
 
 ```
-python Forrest_of_Doom/main.py
+python forest_of_doom/main.py
 ```
 
 Or run in fast mode (no pauses):
 
 ```
-python Forrest_of_Doom/main.py --fast --seed 0
+python -m forest_of_doom.main --fast --seed 0
 ```
 
 Run tests:
@@ -52,7 +52,7 @@ VS Code
 
 Open the project in VS Code and use the Run and Debug pane. Configurations are in `.vscode/launch.json` and include:
 
-- "Run Forest of Doom (module)" — runs `Forrest_of_Doom.main` in the integrated terminal
+ - "Run Forest of Doom (module)" — runs `forest_of_doom.main` in the integrated terminal
 - "Run Forest of Doom (fast)" — runs with `--fast --seed 0`
 - "Run Forest of Doom (load/save)" — example run that uses `${workspaceFolder}\player.json` for load/save
 - "Run Tests (pytest)" — runs pytest
