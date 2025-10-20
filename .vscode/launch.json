@@ -1,0 +1,54 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Forest of Doom (module)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "Forrest_of_Doom.main",
+            "console": "integratedTerminal",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {}
+        },
+        {
+            "name": "Run Forest of Doom (fast)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "Forrest_of_Doom.main",
+            "console": "integratedTerminal",
+            "args": ["--fast","--seed","0"],
+            "cwd": "${workspaceFolder}",
+            "env": {}
+        },
+        {
+            "name": "Run Forest of Doom (load/save)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "Forrest_of_Doom.main",
+            "console": "integratedTerminal",
+            "args": ["--load","${workspaceFolder}\\player.json","--save","${workspaceFolder}\\player.json"],
+            "cwd": "${workspaceFolder}",
+            "env": {}
+        },
+        {
+            "name": "Run Tests (pytest)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "console": "integratedTerminal",
+            "args": ["-q"],
+            "cwd": "${workspaceFolder}",
+            "env": {}
+        },
+        {
+            "name": "Attach to debugpy (port 5678)",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            }
+        }
+    ]
+}
