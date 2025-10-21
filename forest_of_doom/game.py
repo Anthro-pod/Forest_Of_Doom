@@ -173,7 +173,6 @@ picks up a piece of slate and chalk from a table next to his chair and begins to
 
     He then hands you the slate.''', fast=fast)
         # Populate the player's slate with Yaztromo's available items.
-        # Prices are intentionally left as None for the user to fill in later.
         # Prices: default 3 gold. Exceptions (2 gold): Potion of Plant Control,
         # Potion of Insect Control, Potion of Anti-Poison, Boots of Leaping,
         # Glove of Missile Dexterity, Rod of Water-finding, Garlic Buds.
