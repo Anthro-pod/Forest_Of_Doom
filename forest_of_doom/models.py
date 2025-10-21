@@ -17,6 +17,11 @@ class Player:
     luck: int = 0
     backpack: Dict[str, int] = field(default_factory=lambda: {"gold": 10, "map": 1})
     potion: Optional[str] = None
+    # A slate of items Yaztromo writes for the player when you visit his shop.
+    # Each entry is a dict with 'name' and optional 'price' (price set later by user).
+    slate: list = field(default_factory=list)
+    # Inventory holds purchased items (list of item dicts)
+    inventory: list = field(default_factory=list)
 
 
 def generate_stats(player: Player, rng=None) -> None:
@@ -36,6 +41,8 @@ def player_to_dict(player: Player) -> Dict:
         'luck': player.luck,
         'backpack': player.backpack,
         'potion': player.potion,
+        'slate': player.slate,
+        'inventory': player.inventory,
     }
 
 
@@ -47,6 +54,8 @@ def player_from_dict(data: Dict) -> Player:
     p.luck = int(data.get('luck', 0))
     p.backpack = dict(data.get('backpack', {}))
     p.potion = data.get('potion')
+    p.slate = list(data.get('slate', []))
+    p.inventory = list(data.get('inventory', []))
     return p
 
 

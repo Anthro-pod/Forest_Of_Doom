@@ -1,5 +1,5 @@
 from .models import Player, generate_stats
-from .ui import slow_print, get_valid_input, display_status
+from .ui import slow_print, get_valid_input, display_status, shop_loop
 import random
 
 
@@ -130,7 +130,7 @@ pace, eager to meet this man Yaztromo and see what he has to offer.''', fast=fas
     slow_print(f'You have added {player.backpack["gold"]} Gold and a map to your backpack.', fast=fast)
 
 
-def yaztromo_intro(fast: bool = False, save_handler=None, load_handler=None) -> str:
+def yaztromo_intro(player: 'Player', fast: bool = False, save_handler=None, load_handler=None) -> str:
     slow_print('''Your walk to Yaztromo's takes a little over half a day, and you arrive at his stone tower home dirty
 and hungry. As the tower is set back on the edges of Darkwood, some fifty metres away from the path you have been following, it is difficult to find.
 
@@ -156,11 +156,11 @@ am Yaztromo."''', fast=fast)
     slow_print("He then turns and slowly climbs the stone stairs.", fast=fast, pause=not fast)
     handlers = {}
     if save_handler is not None:
-        handlers['save'] = lambda _: save_handler(player=None, slot=None)
-        handlers['save*'] = lambda text: save_handler(player=None, slot=text[len('save'):].strip() or None)
+        handlers['save'] = lambda _: save_handler(player, slot=None)
+        handlers['save*'] = lambda text: save_handler(player, slot=text[len('save'):].strip() or None)
     if load_handler is not None:
-        handlers['load'] = lambda _: load_handler(player=None, slot=None)
-        handlers['load*'] = lambda text: load_handler(player=None, slot=text[len('load'):].strip() or None)
+        handlers['load'] = lambda _: load_handler(player, slot=None)
+        handlers['load*'] = lambda text: load_handler(player, slot=text[len('load'):].strip() or None)
     choice = get_valid_input("Will you:\nFollow him up the stairs?\nDraw your sword and attack him\n(follow/attack): (or type 'save'/'save <slot>'/'load'/'load <slot>') ", ['follow', 'attack'], special_handlers=handlers)
     if choice == 'follow':
         slow_print('''You follow the huffing and puffing old man in his tattered robes up the spiral staircase to a large room
@@ -171,8 +171,37 @@ Yaztromo shuffles past the general clutter and slumps down in an old oak chair. 
 his top pocket and pulls out a fragile pair of gold-rimmed spectacles. Placing these on his nose, he
 picks up a piece of slate and chalk from a table next to his chair and begins to write frantically.
 
-He then hands you the slate.''', fast=fast)
-        return 'shop'  # Placeholder for future shop implementation
+    He then hands you the slate.''', fast=fast)
+        # Populate the player's slate with Yaztromo's available items.
+        # Prices are intentionally left as None for the user to fill in later.
+        # Prices: default 3 gold. Exceptions (2 gold): Potion of Plant Control,
+        # Potion of Insect Control, Potion of Anti-Poison, Boots of Leaping,
+        # Glove of Missile Dexterity, Rod of Water-finding, Garlic Buds.
+        player.slate = [
+            {'name': 'Potion of Healing', 'price': 3},
+            {'name': 'Potion of Plant Control', 'price': 2},
+            {'name': 'Potion of Stillness', 'price': 3},
+            {'name': 'Potion of Insect Control', 'price': 2},
+            {'name': 'Potion of Anti-Poison', 'price': 2},
+            {'name': 'Holy Water', 'price': 3},
+            {'name': 'Ring of Light', 'price': 3},
+            {'name': 'Boots of Leaping', 'price': 2},
+            {'name': 'Rope of climbing', 'price': 3},
+            {'name': 'Net of Entanglement', 'price': 3},
+            {'name': 'Armband of Strength', 'price': 3},
+            {'name': 'Glove of Missile Dexterity', 'price': 2},
+            {'name': 'Rod of Water-finding', 'price': 2},
+            {'name': 'Garlic Buds', 'price': 2},
+            {'name': 'Headband of Concentration', 'price': 3},
+            {'name': 'Fire Capsules', 'price': 3},
+            {'name': 'Nose Filters', 'price': 3},
+        ]
+        # If running in fast/test mode, skip the interactive shop loop to avoid blocking
+        if fast:
+            return 'shop'
+        # Enter interactive shop loop
+        shop_loop(player, fast=fast, save_handler=save_handler, load_handler=load_handler)
+        return 'shop'
     else:
         slow_print('''You draw your sword and attack Yaztromo! He turns, surprised, and raises his hand. A bolt of energy
 knocks you back, ending your adventure prematurely.''', fast=fast)
@@ -219,7 +248,7 @@ def run_game(fast: bool = False, seed: int | None = None, initial_player=None, s
     print()
     display_background(player, fast=fast)
     print()
-    next_section = yaztromo_intro(fast=fast, save_handler=_save_handler, load_handler=_load_handler)
+    next_section = yaztromo_intro(player, fast=fast, save_handler=_save_handler, load_handler=_load_handler)
     if next_section == 'game_over':
         slow_print("Game Over!", fast=fast)
         return player
