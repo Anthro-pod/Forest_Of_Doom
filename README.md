@@ -28,7 +28,7 @@ Short helper scripts are provided to make running the game and tests easy across
 
 PowerShell (Windows)
 ```powershell
-cd 'C:\Users\erica\OneDrive\Documents\Forest_Of_Doom'
+cd 'C:\Users\yourname\OneDrive\Documents\Forest_Of_Doom'
 .\run_game.ps1               # create venv if needed, install reqs, run game interactively
 .\run_game.ps1 -Fast -Seed 0 # fast mode, deterministic seed
 .\run_game.ps1 -Tests        # run tests (pytest)
@@ -36,7 +36,7 @@ cd 'C:\Users\erica\OneDrive\Documents\Forest_Of_Doom'
 
 cmd.exe (Windows)
 ```cmd
-cd C:\Users\erica\OneDrive\Documents\Forest_Of_Doom
+cd C:\Users\yourname\OneDrive\Documents\Forest_Of_Doom
 run_game.bat                 # create venv, install reqs, run game
 run_game.bat --tests         # run tests
 ```
